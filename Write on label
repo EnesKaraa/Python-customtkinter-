@@ -1,0 +1,16 @@
+import customtkinter
+
+root = customtkinter.CTk()
+root.title("Yazı yazma")
+
+entry = customtkinter.CTkEntry(root, placeholder_text="Giriniz...")
+entry.pack(padx = 10, pady = 15)
+
+def İşlem():
+    label = customtkinter.CTkLabel(root, text=entry.get())
+    label.pack()
+    
+button = customtkinter.CTkButton(root, text="Ekle", text_color="Black", command=İşlem)
+button.pack(padx = 10, pady = 15)
+
+root.mainloop()
