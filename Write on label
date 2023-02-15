@@ -1,16 +1,16 @@
 import customtkinter
 
 root = customtkinter.CTk()
-root.title("Yazı yazma")
+root.title("Do not write")
 
-entry = customtkinter.CTkEntry(root, placeholder_text="Giriniz...")
+entry = customtkinter.CTkEntry(root, placeholder_text="Write...")
 entry.pack(padx = 10, pady = 15)
 
-def İşlem():
+def Process():
     label = customtkinter.CTkLabel(root, text=entry.get())
     label.pack()
     
-button = customtkinter.CTkButton(root, text="Ekle", text_color="Black", command=İşlem)
+button = customtkinter.CTkButton(root, text="Add", text_color="Black", command=Process)
 button.pack(padx = 10, pady = 15)
 
 root.mainloop()
