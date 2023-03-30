@@ -1,0 +1,26 @@
+from pytube import YouTube
+import os
+import customtkinter
+
+root = customtkinter.CTk()
+root.title("Youtube Downloder")
+
+url = customtkinter.CTkEntry(root, placeholder_text="Enter the Link.")
+url.pack(padx=15, pady=10)
+
+path = "./downloads"
+def downloadYoutube():
+    label = customtkinter.CTkLabel(root, text="downloading...")
+    label.pack(padx=15, pady=10)
+    yt = YouTube(url.get())
+    yt_stream = yt.streams.get_highest_resolution()
+    if not os.path.exists(path):
+        os.makedirs(path)
+    yt_stream.download(path)
+    label1=customtkinter.CTkLabel(root, text="downloaded", text_color="green")
+    label1.pack(padx=15, pady=10)
+
+Button= customtkinter.CTkButton(root, text="Download", command=downloadYoutube)
+Button.pack(padx=15, pady=10)
+
+root.mainloop()
