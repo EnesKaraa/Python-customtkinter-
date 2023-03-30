@@ -1,0 +1,57 @@
+import customtkinter as ctk
+import os
+from pytube import YouTube
+
+ctk.set_appearance_mode("System")
+
+ctk.set_default_color_theme("green")
+
+appWidth, appHeight = 300, 200
+
+class App(ctk.CTk):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.title("Youtube Downloader")
+        self.geometry(f"{appWidth}x{appHeight}")
+
+        self.nameLabel = ctk.CTkLabel(self,
+                                      text="Link")
+        self.nameLabel.grid(row=0, column=0,
+                            padx=20, pady=20,
+                            sticky="ew")
+
+        self.nameEntry = ctk.CTkEntry(self,
+                                      placeholder_text="Enter the Link")
+        self.nameEntry.grid(row=0, column=1,
+                            columnspan=3, padx=20,
+                            pady=20, sticky="ew")
+
+        def downloadYoutube():
+            self.genderLabel = ctk.CTkLabel(self,
+                                            text="downloading...")
+
+            self.genderLabel.grid(row=2, column=1,
+                              padx=20, pady=20,
+                              sticky="ew")
+            yt = YouTube(self.nameEntry.get())
+            yt_stream = yt.streams.get_highest_resolution()
+            if not os.path.exists("./downloads"):
+                os.makedirs("./downloads")
+            yt_stream.download("./downloads")
+            self.genderLabel = ctk.CTkLabel(self,
+                                            text="downloaded", text_color="green")
+            self.genderLabel.grid(row=3, column=1,
+                                  padx=20, pady=20,
+                                  sticky="ew")
+
+        self.generateResultsButton = ctk.CTkButton(self,
+                                         text="Download", command=downloadYoutube)
+        self.generateResultsButton.grid(row=1, column=1,
+                                        columnspan=2,
+                                        padx=20, pady=20,
+                                        sticky="ew")
+
+if __name__ == "__main__":
+    app = App()
+    app.mainloop()
