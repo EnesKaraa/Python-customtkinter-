@@ -14,7 +14,7 @@ LabelM.grid(row=5, column= 0, pady= 2)
 Mounth = customtkinter.CTkOptionMenu(root, values=["1", "2", "3","4", "5", "6","7", "8", "9","10", "11", "12"])
 Mounth.grid(row=5, column= 3, pady= 2)
 
-def takvim():
+def Calender():
     year_int = int(Year.get())
     mounth_int = int(Mounth.get())
     LabelC = customtkinter.CTkLabel(root, text="creating calendar...")
@@ -22,7 +22,7 @@ def takvim():
     label = customtkinter.CTkLabel(root, text=calendar.month(year_int, mounth_int))
     label.grid(row=9, column= 1, pady= 2)
 
-Buton = customtkinter.CTkButton(root, text="Press", command=takvim)
+Buton = customtkinter.CTkButton(root, text="Press", command=Calender)
 Buton.grid(row=7, column= 1, pady= 2)
 
 root.mainloop()
